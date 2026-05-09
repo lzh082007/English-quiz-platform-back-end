@@ -484,6 +484,6 @@ $RECYCLE.BIN/
 *.swp
 Execel_Temp/
 question_Temp/
-appsetting.json
+appsettings.json
 Program.cs
 appsettings.Development.json
