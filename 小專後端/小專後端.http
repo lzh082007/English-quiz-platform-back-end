@@ -1,0 +1,6 @@
+@小專後端_HostAddress = http://localhost:5236
+
+GET {{小專後端_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
