@@ -126,7 +126,8 @@ namespace 小專後端.Services
                             KK = item.Dto.KK,
                             categories_id = item.Dto.categories_id,
                             difficulty_level = (byte)item.Dto.difficulty_level,
-                            Example = item.Dto.Example
+                            Example = item.Dto.Example,
+                            appear = true
                         });
                     }
                 }
@@ -301,7 +302,28 @@ namespace 小專後端.Services
                     }
                     else if (!wordDict.ContainsKey(checkWord))
                     {
-                        errorMessages.Add($"第{item.Row}列 找不到單字「{item.WordSpelling}」，請先匯入該單字");
+                        var newWord = new words
+                        {
+                            spelling = item.WordSpelling,
+                            categories_id = 1,
+                            difficulty_level = 1,
+                            appear = false
+                        };
+
+                        _dbContext.words.Add(newWord);
+                        await _dbContext.SaveChangesAsync();
+
+                        //errorMessages.Add($"第{item.Row}列 找不到單字「{item.WordSpelling}」，請先匯入該單字");
+                        wordDict.Add(checkWord, newWord.wid);
+                        pendingToAdd.Add(checkContent);
+                        newEntities.Add(new questions
+                        {
+                            word_id = newWord.wid,
+                            question_type_id = item.Dto.question_type_id,
+                            question_content = item.Dto.question_content,
+                            question_correct = 0,
+                            question_error = 0
+                        });
                         continue; 
                     }
 
@@ -323,7 +345,7 @@ namespace 小專後端.Services
                             question_type_id = item.Dto.question_type_id,
                             question_content = item.Dto.question_content,
                             question_correct = 0,
-                            question_error = 0
+                            question_error = 0,
                         });
                     }
                 }

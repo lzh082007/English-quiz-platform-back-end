@@ -22,6 +22,7 @@ public partial class words
     public byte difficulty_level { get; set; }
 
     public virtual categories categories { get; set; } = null!;
+    public bool appear { get; set; }
 
     public virtual ICollection<list_items> list_items { get; set; } = new List<list_items>();
 

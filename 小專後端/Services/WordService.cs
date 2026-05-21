@@ -68,12 +68,12 @@ namespace 小專後端.Services
             {
                 wid = w.wid,
                 spelling = w.spelling,
-                meaning = w.meaning,
-                parts_of_speech = w.parts_of_speech,
-                KK = w.KK,
+                meaning = w.meaning ??"",
+                parts_of_speech = w.parts_of_speech ??"",
+                KK = w.KK ?? "",
                 difficulty_level = w.difficulty_level,
                 categories_id = w.categories_id,
-                Example = w.Example,
+                Example = w.Example ?? "",
                 CategoryName = w.categories != null ? w.categories.categories1 :"無分類"
             }).ToListAsync();
 

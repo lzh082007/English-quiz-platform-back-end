@@ -39,8 +39,7 @@ namespace 小專後端.Controllers
                     //把清單傳給前端
                     return Ok(new
                     {
-                        message = "匯入完成，單字重複。",
-                        duplicates = duplicateMessages 
+                        message = duplicateMessages 
                     });
                 }
 
@@ -114,14 +113,12 @@ namespace 小專後端.Controllers
                 {
                     return Ok(new
                     {
-                        message = "匯入完成但有些題目重複。", 
-                        duplicates = duplicateMessages
+                        message = duplicateMessages
                     });
                 }
 
                 return Ok(new
                 {
-
                     message = "題目匯入成功" 
                 });
             }
